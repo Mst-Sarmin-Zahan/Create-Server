@@ -1,0 +1,43 @@
+# Create-Server
+ let http = require("http");
+ let fs = require("fs");
+
+
+let server= http.createServer(function(req,res){
+
+    if(req.url=="/"){
+        res.writeHead(200,{"Content-Type":"txt/html"});
+        res.write("This is Home Page");
+        res.end();
+    }
+    else if(req.url=="/about"){
+        res.writeHead(200,{"Content-Type":"txt/html"});
+        res.write("This is About Page");
+        res.end();
+    }
+    else if(req.url=="/Contact"){
+        res.writeHead(200,{"Content-Type":"txt/html"});
+        res.write("This is Contact Page");
+        res.end();
+    }
+    else if(req.url=="/File-Write"){
+       let error = fs.writeFileSync("Demo.txt","Hello World");
+       if(error){
+           res.writeHead(200,{"Content-Type":"txt/html"});
+           res.write("File Creation Failed");
+           res.end();
+       }
+       else{
+           res.writeHead(200,{"Content-Type":"txt/html"});
+           res.write("File Creation Success");
+           res.end();
+       }
+
+
+    }
+
+
+
+})
+server.listen(3000);
+console.log("Run Server Successfully")
